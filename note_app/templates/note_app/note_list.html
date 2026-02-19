@@ -4,22 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: aqua;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+        }
+        small {
+            color: #777;
+        }
+    </style>
 </head>
 <body>
     <h1>All Notes</h1>
+    <p><a href="{% url 'create_note' %}">Create a New Note</a>
     <ul>
         {% for note in notes %}
-        <li>
-            </h2>{{ note.title }}</h2>
-            <P>{{ note.content }}</P>
-            <small>Created at: {{ note.created_at }}</small>
-        </li>
+            <li>
+                <h2><a href="{% url 'note_detail' note.id %}">{{ note.title }}</a></h2>
+                <small>Created at: {{ note.created_at }}</small>
+            </li>
         {% empty %}
-         <li>No notes available.</li>
-         {% endfor %} 
-    </ul>                
-
-        
-        
+            <li>No notes available.</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
