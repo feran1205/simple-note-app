@@ -33,13 +33,18 @@
     </style>
 </head>
 <body>
+   <script>
+    // Sets a cookie with the browser's timezone
+    document.cookie = "django_timezone=" + Intl.DateTimeFormat().resolvedOptions().timeZone + "; path=/";
+</script>
     <h1>All Notes</h1>
-    <p><a href="{% url 'create_note' %}">Create a New Note</a>
+    <p><a href="{% url 'create_note' %}">Create a New Note</a></p>
     <ul>
         {% for note in notes %}
             <li>
                 <h2><a href="{% url 'note_detail' note.id %}">{{ note.title }}</a></h2>
                 <small>Created at: {{ note.created_at }}</small>
+                <small>Updated at: {{ note.updated_at }}</small>
             </li>
         {% empty %}
             <li>No notes available.</li>

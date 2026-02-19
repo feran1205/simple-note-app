@@ -53,6 +53,7 @@
         <label for="content">Content:</label><br>
         <textarea id="content" name="content">{{ note.content }}</textarea><br><br>
         <input type="submit" value="Update Note">
+        <a href="{% url 'note_detail' note.id %}">Back</a>
     </form>
 </body>
 </html>

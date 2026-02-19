@@ -34,4 +34,13 @@ def edit_note(request, pk):
         # return redirect('note_detail', pk=note.pk)
         return redirect('note_list')
     return render(request, 'note_app/edit_note.html', {'note': note})
-        
+
+def delete_note(request, pk):
+    try:
+        note = Note.objects.get(pk=pk)
+    except Note.DoesNotExist:
+        return render(request, 'note_app/note_not_found.html')
+    if request.method in ['POST', 'DELETE']:
+        note.delete()
+        return redirect('note_list')
+    return render(request, 'note_app/note_confirm_delete.html', {'note': note})
